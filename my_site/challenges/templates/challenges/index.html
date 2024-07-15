@@ -1,0 +1,31 @@
+{% extends "base.html" %}   <!--  in settings.py dir[ base_dir/templates/]  we have to add this -->
+{%  load static %}   <!--it will us constarct path through css file-->
+
+{% block css_files %}
+
+<link  rel="stylesheet" href= "{% static "challenges/index.css" %}">
+<link  rel="stylesheet" href= "{% static "challenges/includes/header.css" %}">
+
+{% endblock%}
+
+{% block page_title %}   <!-- base template we are inheritated from base.html -->
+    All challenges
+{% endblock %}
+
+{% block content %}
+{% include "challenges/includes/header.html" with active_page="index" %}
+<ul>
+    {% for month in months %}
+
+        <li><a href="{% url  "month-challenge" month %}">{{ month |title}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+    <!-- href tag we kept row path if you keep row path every time 
+        if change the path you need change so that'why you need to keep dynamic path-->
+    <!-- <li><a href="/challenges/{{ i }}" >{{i|title}}</a></li>    this row pat h-->
+
+
+                <!--dynamic path we uesed url tag here month is the argument
+    by using this we can generate urls dynamically  for index -->
